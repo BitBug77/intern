@@ -19,9 +19,8 @@ class BankAccount:
          self.__balance -= amount
          print(f"Withdrew {amount}. New balance: {self.__balance}")
 
-   def get_balance(self, current_balance:float = 0.0):
-      self.current_balance = self.__balance
-      return self.current_balance
+   def get_balance(self):
+      return self.__balance
 
    def __str__(self):
       return f"Account Holder: {self.account_holder}, Balance: {self.__balance}"
@@ -31,10 +30,12 @@ class SavingAccounts(BankAccount):
     super().__init__(account_holder, balance)
     self.interest_rate = interest_rate
 
-   def add_interest(self, interest_amount:float, current_balance:float = 0.0):
+   def add_interest(self, interest_amount:float):
+      current_balance = BankAccount.get_balance(self)
       interest_amount = current_balance * self.interest_rate
       current_balance += interest_amount
       print(f"Interest added: {interest_amount}. New balance: {current_balance}")
+      return current_balance
 
    def __str__(self):
       return f"interest rate: {self.interest_rate}, " 
@@ -47,4 +48,4 @@ print(acc1.__str__())
 
 acc2 = SavingAccounts("Jane Doe", 2000.0, 0.03)
 print(acc2.__str__())
-print("Adding interest...",{acc2.add_interest(0.03, acc2.get_balance())})
+print("Adding interest...",{acc2.add_interest(0.03)})
