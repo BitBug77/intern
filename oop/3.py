@@ -27,13 +27,13 @@ class Inpatient(Patient):
         self.room_number = room_number
 
     def discharge(self):
-        """Clear admission details."""
+        
         self.admission_date = None
         self.room_number = None
         print("Patient discharged. Room cleared.")
 
     def get_summary(self):
-        """Override to include admission details."""
+        
         summary = super().get_summary()
         summary.update({
             "Admission Date": self.admission_date or "Not admitted",
@@ -53,7 +53,7 @@ class Outpatient(Patient):
         print(f"Follow-up scheduled on {date} with Dr. {self.doctor_consulted}.")
 
     def get_summary(self):
-        """Override to include outpatient details."""
+        
         summary = super().get_summary()
         summary.update({
             "Last Visit Date": self.last_visit_date,
@@ -62,7 +62,7 @@ class Outpatient(Patient):
         return summary
 
 
-# ---------- Example Usage ----------
+
 # Inpatient
 inpatient = Inpatient("John Doe", 45, "Male", "P001", "2025-08-01", "Room 101")
 inpatient.add_medical_record("Diabetes")
