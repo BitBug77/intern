@@ -30,7 +30,7 @@ class SavingAccounts(BankAccount):
     super().__init__(account_holder, balance)
     self.interest_rate = interest_rate
 
-   def add_interest(self, interest_amount:float):
+   def add_interest(self, interest_amount:float): 
       current_balance = BankAccount.get_balance(self)
       interest_amount = current_balance * self.interest_rate
       current_balance += interest_amount

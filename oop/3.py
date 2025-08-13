@@ -27,13 +27,11 @@ class Inpatient(Patient):
         self.room_number = room_number
 
     def discharge(self):
-        
         self.admission_date = None
         self.room_number = None
         print("Patient discharged. Room cleared.")
 
     def get_summary(self):
-        
         summary = super().get_summary()
         summary.update({
             "Admission Date": self.admission_date or "Not admitted",
@@ -53,7 +51,6 @@ class Outpatient(Patient):
         print(f"Follow-up scheduled on {date} with Dr. {self.doctor_consulted}.")
 
     def get_summary(self):
-        
         summary = super().get_summary()
         summary.update({
             "Last Visit Date": self.last_visit_date,
