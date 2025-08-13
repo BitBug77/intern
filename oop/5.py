@@ -1,12 +1,12 @@
 from typing import ClassVar
 
 class User:
-    platform_name: ClassVar[str] = "EduVerse"  # Shared platform name
+    platform_name: ClassVar[str] = "EduVerse"  
 
     def __init__(self, name: str, email: str, password: str) -> None:
-        self.name = name  # User's name
-        self.email = email  # User's email
-        self.__password = password  # Private password
+        self.name = name  
+        self.email = email  
+        self.__password = password  
 
     def check_password(self, password: str) -> bool:
         return self.__password == password
