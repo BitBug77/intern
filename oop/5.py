@@ -24,9 +24,9 @@ class User:
 class Instructor(User):
     all_courses: ClassVar[list] = []  
 
-    def __init__(self, name: str, email: str, password: str, courses: list = None) -> None:
+    def __init__(self, name: str, email: str, password: str, courses: list = []) -> None:
         super().__init__(name, email, password)
-        self.courses = courses if courses is not None else []
+        self.courses = courses
 
     def add_course(self, course_name: str) -> None:
         if course_name not in self.courses:
@@ -47,9 +47,9 @@ class Instructor(User):
 class Student(User):
     max_courses: ClassVar[int] = 5  
 
-    def __init__(self, name: str, email: str, password: str, enrolled_courses: list = None) -> None:
+    def __init__(self, name: str, email: str, password: str, enrolled_courses: list = []) -> None:
         super().__init__(name, email, password)
-        self.enrolled_courses = enrolled_courses if enrolled_courses is not None else []
+        self.enrolled_courses = enrolled_courses
 
     def enroll(self, course_name: str) -> None:
         if course_name not in Instructor.list_all_courses():
