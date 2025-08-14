@@ -36,18 +36,12 @@ class Instructor(User):
         else:
             print(f"Course '{course_name}' already exists for this instructor")
 
-    def list_courses(self) -> None:
-        if self.courses:
-            print(f"{self.name}'s courses: {self.courses}")
-        else:
-            print(f"{self.name} has no courses")
+    def list_courses(self) -> list:  
+        return self.courses
 
     @classmethod
     def list_all_courses(cls) -> None:
-        if cls.all_courses:
-            print(f"All courses on platform: {cls.all_courses}")
-        else:
-            print("No courses available")
+        return cls.all_courses
 
 
 class Student(User):
@@ -58,7 +52,7 @@ class Student(User):
         self.enrolled_courses = enrolled_courses if enrolled_courses is not None else []
 
     def enroll(self, course_name: str) -> None:
-        if course_name not in Instructor.all_courses:
+        if course_name not in Instructor.list_all_courses():
             print(f"Cannot enroll: course '{course_name}' does not exist")
         elif course_name in self.enrolled_courses:
             print(f"Already enrolled in '{course_name}'")
@@ -89,7 +83,7 @@ instructor2 = Instructor("Clara", "clara@example.com", "teach456")
 instructor2.add_course("Web Development")
 instructor2.add_course("Data Science 101")  
 
-instructor1.list_courses()
+print(f"Bob's courses: {instructor1.list_courses()}")  # NOW shows returned list
 Instructor.list_all_courses()
 
 student1 = Student("David", "david@example.com", "stud123")
